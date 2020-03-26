@@ -528,7 +528,7 @@ export async function getP12Properties(p12Path: string, p12Pwd: string): Promise
     openssl1.arg(['pkcs12', '-in', p12Path, '-nokeys', '-passin', 'pass:' + p12Pwd]);
 
     let openssl2: ToolRunner = tl.tool(opensslPath);
-    openssl2.arg(['x509', '-noout', '-fingerprint', '-subject', '-dates']);
+    openssl2.arg(['x509', '-noout', '-fingerprint', '-subject', '-dates', '-nameopt utf8']);
     openssl1.pipeExecOutputToTool(openssl2);
 
     let fingerprint: string;
